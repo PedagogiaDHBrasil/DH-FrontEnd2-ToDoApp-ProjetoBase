@@ -1,50 +1,12 @@
-const usuario = document.getElementById("inputEmail")
-const senha = document.getElementById("inputPassword")
-const botao = document.getElementById("submit")
-
-// const BASE_URL = "https://ctd-todo-api.herokuapp.com/v1"
-
-
-const logarUsuario = function () {
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: {
-            "email": usuario.value,
-            "password": senha.value
-        }
+const usuario = document.getElementById("inputEmail");
+const senha = document.getElementById("inputPassword");
+const botao = document.getElementById("submit");
+botao.addEventListener("click", function() {
+    if (usuario.value.length>0 && senha.value.length>0) {
+        console.log("usuário logado")
     }
-    fetch("https://ctd-todo-api.herokuapp.com/v1/users/login", options)
-        .then(response => {
-            console.log(response);
-        })
-}
+    else{
 
-const criarUsuario = () => {
-    fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: {
-            "email": usuario.value,
-            "password": senha.value
-        }
-    })
-        .then(response => {
-            console.log(response);
-        })
-}
-
-botao.addEventListener("click", function (event) {
-    event.preventDefault()
-    if (usuario.value.length > 0 && senha.value.length > 0) {
-        logarUsuario()
-    }
-    else {
-        alert("Por favor insira usuário e senha")
-    }
-
+        console.log("Por favor insira usuário e senha")
+    };
 })
