@@ -12,7 +12,6 @@
 
   <!-- ---------------------- lógica aplicada no registro -------------------- -->
   <script src="/scripts/utils.js"></script>
-  <script src="/scripts/signup.js"></script>
 
 </head>
 
@@ -29,32 +28,35 @@
 
       <label>
         Nome:
-        <input type="text">
+        <input id='nome' type="text">
       </label>
       <label>
-        Sobrenome:
-        <input type="text">
+        Apelido:
+        <input id='apelido' type="text">
       </label>
       <label>
         Email:
-        <input type="email">
+        <input id='email' type="text">
       </label>
       <label>
         Senha:
-        <input type="password">
+        <input id='senha' type="password">
       </label>
       <label>
         Repetir senha:
-        <input type="password">
+        <input id='repetirSenha' type="password">
       </label>
 
-      <button>Criar conta</button>
+      <button id='submit'>Criar conta</button>
 
     </form>
     <div class="ingressar">
       <a href="index.html">Já possui conta? Acesse aqui</a>
     </div>
   </div>
+
+
+  <script src="/scripts/signup.js"></script>
 
 </body>
 
