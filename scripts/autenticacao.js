@@ -1,22 +1,19 @@
-const usuario = document.getElementById("inputEmail")
-const senha = document.getElementById("inputPassword")
-const botao = document.getElementById("submit")
-
-// const BASE_URL = "https://ctd-todo-api.herokuapp.com/v1"
+const email = document.getElementById("inputEmail");
+const senha = document.getElementById("inputPassword");
+const botao = document.getElementById("submit");
 
 let usuarioLogin = {
     email: "",
     password: ""
 }
 
-
 const logarUsuario = function () {
     usuarioLogin = {
-        email: usuario.value,
+        email: email.value,
         password: senha.value
     }
 
-    let usuarioJSON = JSON.stringify(usuarioLogin)
+    let usuarioJSON = JSON.stringify(usuarioLogin);
 
     fetch("https://ctd-todo-api.herokuapp.com/v1/users/login", {
         method: "POST",
@@ -24,28 +21,34 @@ const logarUsuario = function () {
             "Content-Type": "application/json"
         },
         body: usuarioJSON
-        
-    })
-        .then(response => {
-            console.log(response);
-            return response.json()
-        })
-        .then(response => {
-            localStorage.setItem('jwt', response.jwt)
-            console.log(localStorage.getItem('jwt'))
-        }).catch(error => {
-            console.log(error);
-        })
+
+    }).then(response => {
+        return response.json()
+    }).then(response => {
+        localStorage.setItem('jwt', response.jwt)
+        console.log(localStorage.getItem('jwt'))
+    }).catch(error => {
+        console.log(error);
+    });
 }
 
-
-
 botao.addEventListener("click", function (event) {
-    event.preventDefault()
-    if (usuario.value.length > 0 && senha.value.length > 0) {
-        logarUsuario()
+    event.preventDefault();
+    let arrayErros = [];
+
+    if (email.value.length <= 0) {
+        arrayErros.push('Email é obrigatório');
     }
-    else {
-        alert("Por favor insira usuário e senha")
-    }  
-})          
+    if (senha.value.length <= 0) {
+        arrayErros.push('Senha é obrigatório');
+    }
+    if (arrayErros.length > 0) {
+        let stringErros = ''
+        arrayErros.forEach(erro => {
+            stringErros = stringErros + erro + '\n'
+        });
+        alert(stringErros);
+    } else {
+        logarUsuario();
+    }
+})
