@@ -33,7 +33,6 @@ form:after {
   background: linear-gradient(var(--primary), var(--secondary));
 }
 
-
 input {
   width: 100%;
   padding: .4em .5em;
