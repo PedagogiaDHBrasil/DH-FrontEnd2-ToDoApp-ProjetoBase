@@ -1,61 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>To-Do App</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do App</title>
+        <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
+        <link rel="stylesheet" href="styles/acesso.css" />
 
-  <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
-  <link rel="stylesheet" href="styles/acesso.css">
+        <!-- ---------------------- lógica aplicada no registro -------------------- -->
+        <script src="/scripts/utils.js"></script>
+        <script src="/scripts/signup.js"></script>
+    </head>
 
-  <!-- ---------------------- lógica aplicada no registro -------------------- -->
-  <script src="/scripts/utils.js"></script>
-  <script src="/scripts/signup.js"></script>
+    <body>
+        <div class="left">
+            <img src="./assets/pessoa-signup.png" alt="" />
+        </div>
+        <div class="right">
+            <form>
+                <div class="form-header">
+                    <p>To-Do App</p>
+                </div>
 
-</head>
+                <label>
+                    Nome:
+                    <input id="inputName" type="text" />
+                </label>
+                <label>
+                    Sobrenome:
+                    <input id="inputLastName" type="text" />
+                </label>
+                <label>
+                    Email:
+                    <input id="inputEmail" type="email" />
+                </label>
+                <label>
+                    Senha:
+                    <input id="inputPassword" type="password" />
+                </label>
+                <label>
+                    Repetir senha:
+                    <input id="inputPasswordTest" type="password" />
+                </label>
 
-<body>
-
-  <div class="left">
-    <img src="./assets/pessoa-signup.png" alt="">
-  </div>
-  <div class="right">
-    <form>
-      <div class="form-header">
-        <p>To-Do App</p>
-      </div>
-
-      <label>
-        Nome:
-        <input type="text">
-      </label>
-      <label>
-        Sobrenome:
-        <input type="text">
-      </label>
-      <label>
-        Email:
-        <input type="email">
-      </label>
-      <label>
-        Senha:
-        <input type="password">
-      </label>
-      <label>
-        Repetir senha:
-        <input type="password">
-      </label>
-
-      <button type="submit">Criar conta</button>
-
-    </form>
-    <div class="ingressar">
-      <a href="index.html">Já possui conta? Acesse aqui</a>
-    </div>
-  </div>
-
-</body>
-
+                <button type="submit">Criar conta</button>
+            </form>
+            <div class="ingressar">
+                <a href="index.html">Já possui conta? Acesse aqui</a>
+            </div>
+        </div>
+    </body>
 </html>
