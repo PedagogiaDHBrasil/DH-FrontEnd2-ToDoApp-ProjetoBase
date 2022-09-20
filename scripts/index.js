@@ -1,4 +1,4 @@
-window.addEventListener('load', function () {
+window.onload = event => {
     /* ---------------------- obtenemos variables globales ---------------------- */
     const form = document.forms[0];
     const email = document.querySelector('#inputEmail');
@@ -43,4 +43,4 @@ window.addEventListener('load', function () {
                 form.reset();
             });
     });
-});
+};
