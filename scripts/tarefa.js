@@ -1,6 +1,6 @@
 //consultamos si es que existe data del usuario en localstorage
 if (!localStorage.user) {
-    location.replace('login.html');
+    location.replace('index.html');
 }
 /* -------------------------------------------------------------------------- */
 /*             realizamos la lógica una vez que carga el documento            */
@@ -18,7 +18,7 @@ window.addEventListener('load', function () {
         if (confirmacion) {
             //limpiamos el localstorage y redireccioamos a login
             localStorage.clear();
-            location.replace('/login.html');
+            location.replace('/index.html');
         }
     });
 

@@ -34,7 +34,7 @@ window.onload = event => {
                 if (data.jwt) {
                     const usuario = {
                         jwt: data.jwt,
-                        name: email.value.split('@')[0],
+                        name: inputName.value,
                     };
                     localStorage.setItem('user', JSON.stringify(usuario));
 
