@@ -224,7 +224,7 @@ a {
   text-decoration: line-through;
 }
 
-#skeleton .descricao{
+/* #skeleton .descricao{
   background-color: rgb(189, 189, 189);
 }
 #skeleton p{
@@ -237,7 +237,7 @@ a {
 
 #skeleton{
   animation: trasparencia 1s infinite;
-}
+} */
 @keyframes trasparencia {
   0%{ opacity: 0.5;}
   100%{ opacity: 0.8;}
