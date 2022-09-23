@@ -1,5 +1,5 @@
 window.onload = event => {
-    const url = 'https://ctd-todo-api.herokuapp.com/v1/users/login',
+    const url = 'https://ctd-fe2-todo-v2.herokuapp.com/v1/users/login',
         form = document.forms[0];
 
     form.addEventListener('submit', function (e) {

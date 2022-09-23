@@ -1,6 +1,6 @@
 !localStorage.userJwt ? location.replace('index.html') : '';
 
-const urlBase = 'https://ctd-todo-api.herokuapp.com/v1';
+const urlBase = 'https://ctd-fe2-todo-v2.herokuapp.com/v1';
 const token = localStorage.userJwt;
 let userInfo = {};
 
@@ -40,23 +40,26 @@ function consultarListaTasks(jwt) {
             authorization: jwt,
         },
     };
-    fetch(urlTareas, settings)
+    fetch(urlBase + '/tasks', settings)
         .then(response => response.json())
         .then(tasks => {
-            console.log(tasks);
             listasTasksDom(tasks);
         });
 }
 
 function listasTasksDom(tasksLista) {
     const tarefasPendentes = document.querySelector('.tarefas-pendentes'),
-        tarefasTerminadas = document.querySelector('.tareas-terminadas'),
-        tarefasPendentesTemplate = '',
-        tarefasTerminadasTemplate = '';
+        tarefasTerminadas = document.querySelector('.tarefas-terminadas');
+    let tarefasPendentesTemplate = '',
+        tarefasTerminadasTemplate = '',
+        date,
+        formatDate;
 
     tasksLista.forEach(task => {
-        let date = new Date(task.createdAt),
-            formatDate = `${date.getUTCFullYear}/${date.getUTCMonth}/${date.getUTCDate}`;
+        date = new Date(task.createdAt);
+        formatDate = `${date.getUTCDate()}/${date.getUTCMonth()}/${date.getUTCFullYear()}`;
+
+        console.log(formatDate);
 
         if (!task.completed) {
             tarefasPendentesTemplate += `
