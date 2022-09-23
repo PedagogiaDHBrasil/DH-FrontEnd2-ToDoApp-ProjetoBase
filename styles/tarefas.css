@@ -49,7 +49,7 @@ a {
 /* Nova tarefa ----------------------------------------------------------- */
 
 .nova-tarefa {
-  position: relative;
+  /* position: relative; */
   display: flex;
   align-items: center;
   background-color: white;
@@ -185,7 +185,7 @@ a {
 /* Tarefas terminadas ----------------------------------------------------------- */
 
 .titulo-terminadas {
-  position: relative;
+  /* position: relative; */
   width: 8em;
   text-align: center;
   padding: .5em 1em;
