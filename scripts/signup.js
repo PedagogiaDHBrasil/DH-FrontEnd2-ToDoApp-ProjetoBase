@@ -6,21 +6,19 @@ window.onload = event => {
         // form.reset();
     }
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const payload = {
-                firstName: form['inputName'].value,
-                lastName: form['inputLastName'].value,
-                email: form['inputEmail'].value,
-                password: form['inputPassword'].value,
-            },
-            settings = {
-                method: 'POST',
-                body: JSON.stringify(payload),
-                headers: { 'Content-Type': 'application/json' },
-            };
-
-        fetch(url, settings)
+    form.onsubmit = event => {
+        event.preventDefault();
+        const data = {
+            firstName: form['inputName'].value,
+            lastName: form['inputLastName'].value,
+            email: form['inputEmail'].value,
+            password: form['inputPassword'].value,
+        };
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' },
+        })
             .then(response => response.json())
             .then(data => {
                 if (data.jwt) {
@@ -28,5 +26,5 @@ window.onload = event => {
                     location.replace('tarefas.html');
                 }
             });
-    });
+    };
 };

@@ -99,7 +99,7 @@ a {
   width: 100%;
 }
 
-.not-done {
+.not-done, .done {
   width: 2em;
   height: 2em;
   background-color: var(--app-grey);
@@ -126,7 +126,7 @@ a {
   margin-bottom: 1.5em;
 }
 
-.tarefa .not-done {
+.tarefa .not-done,.tarefa .done {
   position: relative;
   height: 1.5em;
   width: 1.5em;
@@ -141,7 +141,11 @@ a {
   background-color: var(--secondary);
 }
 
-.tarefa:first-child .not-done::before {
+.tarefa .done {
+  background-color: var(--secondary);
+}
+
+.tarefa:first-child .not-done::before, .tarefa:first-child .done::before {
   content: '';
   position: absolute;
   bottom: 100%;
@@ -152,7 +156,7 @@ a {
   background-color: var(--secondary);
 }
 
-.tarefa:not(:last-child) .not-done::after {
+.tarefa:not(:last-child) .not-done::after, .tarefa:not(:last-child) .done::after {
   content: '';
   position: absolute;
   top: 100%;
@@ -175,6 +179,15 @@ a {
 
 .tarefa .nome {
   color: rgb(95, 95, 95);
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.fa-trash-o{
+  background-color: aqua;
+  color: crimson;
 }
 
 .tarefa .timestamp {
