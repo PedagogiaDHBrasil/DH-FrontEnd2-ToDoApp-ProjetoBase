@@ -57,7 +57,9 @@ function listTasks(tasks) {
     let tasksPendTemplates = '',
         tasksTermTemplates = '';
 
-    let newTaks, taskPendLastDate, taskTermLastDate;
+    // let taskPendLastDate, taskTermLastDate;
+
+    let newTaks;
 
     tasks.forEach(task => {
         const date = new Date(task.createdAt),
@@ -65,6 +67,7 @@ function listTasks(tasks) {
             month_decimal = month_num <= 9 ? '0' + month_num : month_num,
             formatDate = `${date.getUTCDate()}/${month_decimal}/${date.getUTCFullYear()}`,
             classNameDone = !task.completed ? 'not-done' : 'done',
+            svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/></svg>`,
             template = `
                 <li id="${task.id}" class="tarefa">
                     <div class="${classNameDone}"></div>
@@ -73,24 +76,14 @@ function listTasks(tasks) {
                         <div>
                             <p class="timestamp">Criada em: ${formatDate}</p>
                             <button>
-                                <i class="fa-regular fa-trash-can"></i>
+                                ${svg}
                             </button>
                         </div>
                     </div>
                 </li>
                 `;
 
-        if (!task.completed) {
-            taskPendLastDate > date
-                ? (tasksPendTemplates += template)
-                : (tasksPendTemplates = template + tasksPendTemplates);
-            taskPendLastDate = date;
-        } else {
-            taskTermLastDate > date
-                ? (tasksTermTemplates += template)
-                : (tasksTermTemplates = template + tasksTermTemplates);
-            taskTermLastDate = date;
-        }
+        !task.completed ? (tasksPendTemplates += template) : (tasksTermTemplates += template);
     });
 
     tarefasPendentes.innerHTML = tasksPendTemplates;
@@ -157,9 +150,31 @@ function switchcompleted(tasks) {
 }
 function renameTask(tasks) {
     tasks.forEach(task => {
-        task.children[1].children[0].onclick = event => {
+        const inputTask = task.children[1].children[0];
+        inputTask.onclick = event => {
             event.target.removeAttribute('readonly');
-            // event.target.focus();
+            event.target.focus();
+        };
+        inputTask.onblur = event => {
+            event.target.setAttribute('readonly', 'readonly');
+        };
+        inputTask.onchange = event => {
+            const data = {
+                description: inputTask.value,
+            };
+
+            fetch(urlBase + '/tasks/' + task.id, {
+                method: 'PUT',
+                body: JSON.stringify(data),
+                headers: {
+                    Authorization: token,
+                    'Content-type': 'application/json',
+                },
+            })
+                .then(response => {
+                    fetchTasks();
+                })
+                .catch(error => console.log(error));
         };
     });
 }
@@ -168,7 +183,14 @@ function renameTask(tasks) {
 function deleteTask(tasks) {
     tasks.forEach(task => {
         task.children[1].children[1].onclick = event => {
-            console.log(task.id);
+            fetch(urlBase + '/tasks/' + task.id, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: token,
+                },
+            }).then(response => {
+                fetchTasks();
+            });
         };
     });
 }
