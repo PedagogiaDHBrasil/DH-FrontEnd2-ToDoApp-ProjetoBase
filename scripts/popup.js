@@ -14,7 +14,7 @@ popup.onclick = event => {
 
     if (finalizarSessao) {
         localStorage.clear();
-        location.replace('/index.html');
+        location.replace('index.html');
     }
     if (shouldClosePopup) {
         popup.style.display = 'none';
